@@ -1,9 +1,8 @@
 package ru.job4j.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +12,11 @@ public class Person {
     private int id;
     private String login;
     private String password;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     public int getId() {
         return id;
@@ -36,6 +40,14 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
