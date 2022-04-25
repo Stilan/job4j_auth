@@ -3,7 +3,9 @@ package ru.job4j.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.job4j.domain.Employee;
 import ru.job4j.domain.Person;
+import ru.job4j.repository.EmployeeRepository;
 import ru.job4j.repository.PersonRepository;
 
 import java.util.List;
@@ -14,9 +16,11 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/person")
 public class PersonController {
     private final PersonRepository persons;
+    private final EmployeeRepository employeeRepository;
 
-    public PersonController(final PersonRepository persons) {
+    public PersonController(final PersonRepository persons, final EmployeeRepository employeeRepository) {
         this.persons = persons;
+        this.employeeRepository = employeeRepository;
     }
 
     @GetMapping("/")
@@ -34,7 +38,9 @@ public class PersonController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Person> create(@RequestBody Person person) {
+    public ResponseEntity<Person> create(@RequestBody Person person, @RequestParam int emId) {
+        Employee employee = employeeRepository.findById(emId).get();
+        person.setEmployee(employee);
         return new ResponseEntity<Person>(
                 this.persons.save(person),
                 HttpStatus.CREATED

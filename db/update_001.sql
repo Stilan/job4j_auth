@@ -19,7 +19,7 @@ values ('Alex', 'Vens', '654321');
 insert into employee (name, surname, iNN)
 values ('Ivan', 'Ivanov', '121212');
 
-select * from employee;
+select * from person;
 
 drop table employee;
 drop table person;

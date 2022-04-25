@@ -10,7 +10,6 @@ import ru.job4j.domain.Person;
 import ru.job4j.repository.EmployeeRepository;
 import ru.job4j.repository.PersonRepository;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,13 +20,12 @@ public class EmployeeController {
 
 
     private final EmployeeRepository employeeRepository;
-    private final PersonRepository personRepository;
 
 
 
     public EmployeeController(PersonRepository personRepository, EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        this.personRepository = personRepository;
+
     }
 
     @GetMapping("/")
@@ -55,11 +53,14 @@ public class EmployeeController {
 
     @PutMapping("/")
     public ResponseEntity<Void> update(@RequestBody Employee employee) {
-        return null;
+        this.employeeRepository.save(employee);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id) {
-     return  null;
+        Employee employee = employeeRepository.findById(id).get();
+        this.employeeRepository.delete(employee);
+        return ResponseEntity.ok().build();
     }
 }
