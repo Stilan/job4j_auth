@@ -21,8 +21,6 @@ public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;
 
-
-
     public EmployeeController(PersonRepository personRepository, EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
 
