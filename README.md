@@ -16,32 +16,20 @@ RestFull API архитектура - это архитектура клиент
 
 Как запустить приложение через Docker Compose.
 
-1. Клонируем проект
+1. Собираем jar
 
-![img.png](img.png)
+mvn install Dmaven.test.skip=true
 
-2. Собираем проект
+2. Собираем образ приложения:
 
-![img_1.png](img_1.png)
+docker build -t auth .
 
-3. Создаем Dockerfile и прописываем скрипт сборки
+3. Запускаем
 
-![img_2.png](img_2.png)
+docker-compose up
 
-4. Собирать
 
-![img_3.png](img_3.png)
 
-5. Пропишем docker-compose.yml
 
-![img_4.png](img_4.png)
 
-6. Запустим docker-compose up
-Приложения запустилось
-
-![img_5.png](img_5.png)
-
-7. Для того чтобы посмотреть состояние контейнеров можно набрать команду
-
-![img_6.png](img_6.png)
 
