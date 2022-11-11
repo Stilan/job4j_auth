@@ -14,7 +14,9 @@ services:
       - "5432:5432"
     restart: always
   app:
-    image: auth
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: auth
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db2:5432/auht
