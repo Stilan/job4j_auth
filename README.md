@@ -28,6 +28,29 @@ docker build -t auth .
 
 docker-compose up
 
+Как запустить приложение через k8s
+
+1. Создание Secret
+kubectl apply -f postgresdb-secret.yml
+kubectl get secret
+
+
+2. Создание ConfigMap
+kubectl apply -f postgresdb-configmap.yml
+kubectl get configmap
+
+3. Создание развертывания postgresdb-deployment
+kubectl apply -f postgresdb-deployment.yml
+kubectl logs -l app=postgresdb
+kubectl describe pod
+
+4. Создание развертывания spring-boot-deployment
+kubectl apply -f spring-deployment.yml
+kubectl logs -l app=spring-boot
+kubectl describe pod
+minikube service spring-boot-service
+
+
 
 
 
