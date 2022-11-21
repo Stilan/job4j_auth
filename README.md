@@ -14,19 +14,11 @@ RestFull API архитектура - это архитектура клиент
 
 6. Возможность выполнять код на стороне клиента (Code on Demand)
 
-Как запустить приложение через Docker Compose.
+Как запустить приложение через Docker Compose.(Многоэтапная сборка)
 
-1. Собираем jar
+1. Сборка и запуск
 
-mvn install Dmaven.test.skip=true
-
-2. Собираем образ приложения:
-
-docker build -t auth .
-
-3. Запускаем
-
-docker-compose up
+docker-compose up --build
 
 Как запустить приложение через k8s
 
